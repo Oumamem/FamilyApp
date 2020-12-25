@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Souvenir index{% endblock %}
+
+{% block body %}
+    <h1>Souvenir index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Path</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for souvenir in souvenirs %}
+            <tr>
+                <td>{{ souvenir.id }}</td>
+                <td>{{ souvenir.date ? souvenir.date|date('Y-m-d') : '' }}</td>
+                <td>{{ souvenir.name }}</td>
+                <td>{{ souvenir.description }}</td>
+                <td>{{ souvenir.path }}</td>
+                <td>
+                    <a href="{{ path('souvenir_show', {'id': souvenir.id}) }}">show</a>
+                    <a href="{{ path('souvenir_edit', {'id': souvenir.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('souvenir_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Achat {% endblock %}
+
+{% block body %}
+<div class="content-grid">
+    <!-- SECTION BANNER -->
+    <div class="section-banner">
+        <!-- SECTION BANNER ICON -->
+        <img class="section-banner-icon" src="/img/banner/shopping.png" alt="forums-icon">
+        <!-- /SECTION BANNER ICON -->
+
+        <!-- SECTION BANNER TITLE -->
+        <p class="section-banner-title">Les achats de ma famille</p>
+        <!-- /SECTION BANNER TITLE -->
+
+        <!-- SECTION BANNER TEXT -->
+        <p class="section-banner-text">Description</p>
+        <!-- /SECTION BANNER TEXT -->
+    </div>
+    <!-- /SECTION BANNER -->
+
+    <!-- SECTION HEADER -->
+    <div class="section-header">
+        <!-- SECTION HEADER INFO -->
+        <div class="section-header-info">
+            <!-- SECTION PRETITLE -->
+            <p class="section-pretitle">Marahbe bik</p>
+            <!-- /SECTION PRETITLE -->
+
+            <!-- SECTION TITLE -->
+            <h2 class="section-title">les achats de la famille</h2>
+            <!-- /SECTION TITLE -->
+        </div>
+        <!-- /SECTION HEADER INFO -->
+    </div>
+    <!-- /SECTION HEADER -->
+
+    <!-- SECTION FILTERS BAR -->
+    <div class="section-filters-bar v7">
+        <!-- SECTION FILTERS BAR ACTIONS -->
+        <div class="section-filters-bar-actions">
+            <!-- SECTION FILTERS BAR INFO -->
+            <div class="section-filters-bar-info">
+                <!-- SECTION FILTERS BAR TITLE -->
+                <p class="section-filters-bar-title"><a href="forums.html">Lista</a></p>
+                <!-- /SECTION FILTERS BAR TITLE -->
+
+                <!-- SECTION FILTERS BAR TEXT -->
+                <!--<p class="section-filters-bar-text">Ekher haja tzedet 3andha 2 jours, zedha <a class="highlighted" href="forums-category.html">Ahmed</a> </p>
+               /SECTION FILTERS BAR TEXT -->
+            </div>
+            <!-- /SECTION FILTERS BAR INFO -->
+        </div>
+        <!-- /SECTION FILTERS BAR ACTIONS -->
+        <a class="button secondary popup-event-creation-trigger" href="{{ path('achat_new') }}">+ Ajouter un article à acheter</a>
+        <!-- SECTION FILTERS BAR ACTIONS -->
+        <div class="section-filters-bar-actions">
+            <!-- FORM -->
+            <form class="form">
+                <!-- FORM ITEM -->
+                <div class="form-item split">
+                    <!-- FORM INPUT -->
+                    <div class="form-input small">
+                        <label for="forum-search">Recherche achats</label>
+                        <input type="text" id="forum-search" name="forum_search">
+                    </div>
+                    <!-- /FORM INPUT -->
+
+                    <!-- BUTTON -->
+                    <button class="button primary">
+                        <!-- ICON MAGNIFYING GLASS -->
+                        <svg class="icon-magnifying-glass">
+                            <use xlink:href="#svg-magnifying-glass"></use>
+                        </svg>
+                        <!-- /ICON MAGNIFYING GLASS -->
+                    </button>
+                    <!-- /BUTTON -->
+                </div>
+                <!-- /FORM ITEM -->
+            </form>
+            <!-- /FORM -->
+        </div>
+        <!-- /SECTION FILTERS BAR ACTIONS -->
+    </div>
+    <!-- /SECTION FILTERS BAR -->
+
+    <!-- TABLE -->
+
+    <table class="table table-forum-category">
+        <thead class="thead-dark">
+        <th class="table-header-column centered padded-medium">Nom de l'achat'</th>
+        <th class="table-header-column centered padded-medium">Description</th>
+        <th class="table-header-column centered padded-medium">prix</th>
+
+        <th class="table-header-column centered padded-medium">Avancement</th>
+        <th class="table-header-column centered padded-medium">Modifier</th>
+        </thead>
+        <tbody class="table-body">
+        </thead>
+        <tbody>
+        {% for achat in achats %}
+            <tr>
+
+                <td>{{ achat.nom }}</td>
+                <td>{{ achat.description }}</td>
+                <td>{{ achat.prix }}</td>
+                {% if achat.termine %}<td style="color: gray">Acheté déjà</td>{% else %}<td><button type="submit"  class="btn btn-success">
+                        <i class="fa fa-check-circle" aria-hidden="true"></i>
+                    </button></td>{% endif %}
+
+                <td>
+                    <a href="{{ path('achat_show', {'id': achat.id}) }}" class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                    <a href="{{ path('achat_edit', {'id': achat.id}) }}" class="btn btn-info"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

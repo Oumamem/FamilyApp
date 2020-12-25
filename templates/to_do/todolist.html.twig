@@ -1,0 +1,176 @@
+{% extends 'base.html.twig' %}
+{% block title %}Liste tâches{% endblock %}
+{% block body %}
+
+
+
+  <!-- CONTENT GRID -->
+  <div class="content-grid">
+    <!-- SECTION BANNER -->
+    <div class="section-banner">
+      <!-- SECTION BANNER ICON -->
+      <img class="section-banner-icon" src="/img/banner/check.png" alt="forums-icon">
+      <!-- /SECTION BANNER ICON -->
+  
+      <!-- SECTION BANNER TITLE -->
+      <p class="section-banner-title">ToDo Liste</p>
+      <!-- /SECTION BANNER TITLE -->
+  
+      <!-- SECTION BANNER TEXT -->
+      <p class="section-banner-text">Description</p>
+      <!-- /SECTION BANNER TEXT -->
+    </div>
+    <!-- /SECTION BANNER -->
+
+    <!-- SECTION HEADER -->
+    <div class="section-header">
+      <!-- SECTION HEADER INFO -->
+      <div class="section-header-info">
+        <!-- SECTION PRETITLE -->
+        <p class="section-pretitle">Marahbe bik</p>
+        <!-- /SECTION PRETITLE -->
+  
+        <!-- SECTION TITLE -->
+        <h2 class="section-title">Chbesh na3mlou lyoum?</h2>
+        <!-- /SECTION TITLE -->
+      </div>
+      <!-- /SECTION HEADER INFO -->
+    </div>
+    <!-- /SECTION HEADER -->
+
+    <!-- SECTION FILTERS BAR -->
+    <div class="section-filters-bar v7">
+      <!-- SECTION FILTERS BAR ACTIONS -->
+      <div class="section-filters-bar-actions">
+        <!-- SECTION FILTERS BAR INFO -->
+        <div class="section-filters-bar-info">
+          <!-- SECTION FILTERS BAR TITLE -->
+          <p class="section-filters-bar-title"><a href="forums.html">Lista</a></p>
+          <!-- /SECTION FILTERS BAR TITLE -->
+  
+          <!-- SECTION FILTERS BAR TEXT -->
+          <!--<p class="section-filters-bar-text">Ekher haja tzedet 3andha 2 jours, zedha <a class="highlighted" href="forums-category.html">Ahmed</a> </p>
+         /SECTION FILTERS BAR TEXT -->
+        </div>
+        <!-- /SECTION FILTERS BAR INFO -->
+      </div>
+      <!-- /SECTION FILTERS BAR ACTIONS -->
+      <a class="button secondary popup-event-creation-trigger" href="{{ path('todo.edit') }}">+ Ajouter une tâche</a>
+      <!-- SECTION FILTERS BAR ACTIONS -->
+      <div class="section-filters-bar-actions">
+        <!-- FORM -->
+        <form class="form">
+          <!-- FORM ITEM -->
+          <div class="form-item split">
+            <!-- FORM INPUT -->
+            <div class="form-input small">
+              <label for="forum-search">Recherche tâches</label>
+              <input type="text" id="forum-search" name="forum_search">
+            </div>
+            <!-- /FORM INPUT -->
+  
+            <!-- BUTTON -->
+            <button class="button primary">
+              <!-- ICON MAGNIFYING GLASS -->
+              <svg class="icon-magnifying-glass">
+                <use xlink:href="#svg-magnifying-glass"></use>
+              </svg>
+              <!-- /ICON MAGNIFYING GLASS -->
+            </button>
+            <!-- /BUTTON -->
+          </div>
+          <!-- /FORM ITEM -->
+        </form>
+        <!-- /FORM -->
+      </div>
+      <!-- /SECTION FILTERS BAR ACTIONS -->
+    </div>
+    <!-- /SECTION FILTERS BAR -->
+
+    <!-- TABLE -->
+
+    <table class="table table-forum-category">
+      <thead class="thead-dark">
+      <th class="table-header-column centered padded-medium">Nom de la tâche</th>
+      <th class="table-header-column centered padded-medium">Description</th>
+      <th class="table-header-column centered padded-medium">Ajouté par</th>
+      <th class="table-header-column centered padded-medium">Assigné à</th>
+      <th class="table-header-column centered padded-medium">Avancement</th>
+      <th class="table-header-column centered padded-medium">Modifier</th>
+      </thead>
+      <tbody class="table-body">
+      {%  for tache in taches %}
+      <tr class="table-row ">
+        <td class="table-column">
+
+              <p class="forum-category-title">{{ tache.name }}</p>
+
+        </td>
+        <td class="table-column ">
+
+              <!-- FORUM CATEGORY TITLE -->
+              <p class="forum-category-text">{{ tache.description }}</p>
+
+        </td>
+        <td class="table-column">
+
+            <!-- TABLE TITLE -->
+            <a href="#">
+              <img class="forum-category-image rounded-circle" src="{{ tache.Membre.path }}" alt="{{ tache.membre.prenom }}"  width="100px" height="100px">
+            </a>
+            <!-- /TABLE TITLE -->
+
+        </td>
+        <td class="table-column">
+
+          <!-- TABLE TITLE -->
+          <a href="#">
+            <img class="forum-category-image rounded-circle" src="{{ tache.AssigneA.path }}" alt="{{ tache.AssigneA.prenom }}"  width="100px" height="100px">
+          </a>
+          <!-- /TABLE TITLE -->
+
+        </td>
+        <td  class="table-column padded-big-left">
+
+
+          {% if tache.termine==false %}
+        <!-- TABLE LINK -->
+        <form method="POST" action="{{ path('todo.done', {id: tache.id}) }}" onsubmit="return confirm('Terminer la tache {{tache.name}}??')">
+          <input type="hidden" name="_method" value="DONE">
+
+          <button type="submit"  class="btn btn-success">
+            <i class="fa fa-check-circle" aria-hidden="true"></i>
+          </button>
+
+        </form>
+
+          {% else %}
+
+            Cette tâche est terminée
+        </td>
+            <!-- /TABLE LINK -->
+  {% endif %}
+        <td class="table-column">
+          <a href="{{ path('todo.edit', {id:tache.id}) }}" class="btn btn-info" >
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+
+
+      </tbody>
+      <tfoot></tfoot>
+    </table>
+
+
+    <!-- /TABLE -->
+
+  <!-- /CONTENT GRID -->
+
+<!-- app -->
+
+  </div>
+
+{% endblock %}
+

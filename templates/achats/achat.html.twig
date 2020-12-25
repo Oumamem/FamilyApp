@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+{% block title %}Liste Membres{% endblock %}
+{% block body %}
+
+<div class="content-grid">
+    <!-- SECTION BANNER -->
+    <div class="section-banner">
+        <!-- SECTION BANNER ICON -->
+        <img class="section-banner-icon" src="img/banner/shopping.png" alt="forums-icon">
+        <!-- /SECTION BANNER ICON -->
+
+        <!-- SECTION BANNER TITLE -->
+        <p class="section-banner-title">Liste shopping</p>
+        <!-- /SECTION BANNER TITLE -->
+
+        <!-- SECTION BANNER TEXT -->
+        <p class="section-banner-text">Vous trouvez ici tout vos futures achats</p>
+        <!-- /SECTION BANNER TEXT -->
+    </div>
+    <!-- /SECTION BANNER -->
+
+    <!-- SECTION HEADER -->
+    <div class="section-header">
+        <!-- SECTION HEADER INFO -->
+        <div class="section-header-info">
+            <!-- SECTION PRETITLE -->
+            <p class="section-pretitle">Bienvenu</p>
+            <!-- /SECTION PRETITLE -->
+
+            <!-- SECTION TITLE -->
+            <h2 class="section-title">Liste des achats</h2>
+            <!-- /SECTION TITLE -->
+        </div>
+        <!-- /SECTION HEADER INFO -->
+    </div>
+    <!-- /SECTION HEADER -->
+
+    <!-- SECTION FILTERS BAR -->
+    <div class="section-filters-bar v7">
+        <!-- SECTION FILTERS BAR ACTIONS -->
+        <div class="section-filters-bar-actions">
+            <!-- SECTION FILTERS BAR INFO -->
+            <div class="section-filters-bar-info">
+                <!-- SECTION FILTERS BAR TITLE -->
+                <p class="section-filters-bar-title"><a href="forums.html">Lista</a></p>
+                <!-- /SECTION FILTERS BAR TITLE -->
+
+                <!-- SECTION FILTERS BAR TEXT -->
+                <p class="section-filters-bar-text">Dernière mise à jour est faite le {{ last.createdAt }} par {{ last.membre}} <a class="highlighted" href="forums-category.html">Ahmed</a> </p>
+                <!-- /SECTION FILTERS BAR TEXT -->
+            </div>
+            <!-- /SECTION FILTERS BAR INFO -->
+        </div>
+        <!-- /SECTION FILTERS BAR ACTIONS -->
+        <a class="button secondary popup-event-creation-trigger" href="">+ Ajouter un nouveau achat</a>
+        <!-- SECTION FILTERS BAR ACTIONS -->
+
+        <div class="section-filters-bar-actions">
+            <!-- FORM -->
+            <form class="form">
+                <!-- FORM ITEM -->
+                <div class="form-item split">
+                    <!-- FORM INPUT -->
+                    <div class="form-input small">
+                        <label for="forum-search">Search Forums</label>
+                        <input type="text" id="forum-search" name="forum_search">
+                    </div>
+                    <!-- /FORM INPUT -->
+
+                    <!-- BUTTON -->
+                    <button class="button primary">
+                        <!-- ICON MAGNIFYING GLASS -->
+                        <svg class="icon-magnifying-glass">
+                            <use xlink:href="#svg-magnifying-glass"></use>
+                        </svg>
+                        <!-- /ICON MAGNIFYING GLASS -->
+                    </button>
+                    <!-- /BUTTON -->
+                </div>
+                <!-- /FORM ITEM -->
+            </form>
+            <!-- /FORM -->
+        </div>
+        <!-- /SECTION FILTERS BAR ACTIONS -->
+    </div>
+    <!-- /SECTION FILTERS BAR -->
+
+    <!-- TABLE -->
+
+    <table class="table table-forum-category">
+        <thead class="thead-dark">
+        <th class="table-header-column">Catégories</th>
+        <th class="table-header-column">Prix</th>
+        <th class="table-header-column">Ajouté par</th>
+        <th class="table-header-column centered padded-medium ">Avancement</th>
+        </thead>
+        <tbody class="table-body">
+        {%  for achat in achats %}
+        <tr class="table-row ">
+            <td class="table-column">
+
+                <p class="forum-category-title">{{ achat.nom }}</p>
+
+            </td>
+            <td class="table-column ">
+
+                <!-- FORUM CATEGORY TITLE -->
+                <p class="forum-category-text">{{ achat.prix }}</p>
+
+            </td>
+            <td class="table-column">
+
+                <!-- TABLE TITLE -->
+                <a href="#">
+                    <img class="forum-category-image" src="{{ achat.membre.path }}" alt="category-01">
+                </a>
+                <!-- /TABLE TITLE -->
+
+            </td>
+            <td  class="table-column  padded-big-left">
+
+                <!-- TABLE LINK -->
+                <a href="" class="btn btn-success"  >Marqué comme acheté</a>
+                <a href="" class="btn btn-info" style="display: inline-block">Modifier</a>
+                <!-- /TABLE LINK -->
+
+            </td>
+        </tr>
+        {% endfor %}
+
+        </tbody>
+        <tfoot></tfoot>
+    </table>
+
+
+    <!-- /TABLE -->
+
+    <!-- /CONTENT GRID -->
+
+    <!-- app -->
+    <script src="app.bundle.min.js"></script>
+</div>
+{% endblock %}

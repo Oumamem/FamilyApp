@@ -1,0 +1,81 @@
+
+{{ form(form) }}
+{#<form class="form">
+    <!-- FORM ROW -->
+    <div class="form-row">
+        <!-- FORM ITEM -->
+        <div class="form-item">
+            <!-- FORM INPUT -->
+            <div class="form-input">
+                {{form_row(form.name)}}
+            </div>
+            <!-- /FORM INPUT -->
+        </div>
+        <!-- /FORM ITEM -->
+    </div>
+    <!-- /FORM ROW -->
+
+    <!-- FORM ROW -->
+    <div class="form-row split">
+        <!-- FORM ITEM -->
+        <div class="form-item">
+            <!-- FORM INPUT -->
+
+            <div class="form-input">
+                {{form_row(form.AssigneA)}}
+            </div>
+            <!-- /FORM INPUT -->
+        </div>
+        <!-- /FORM ITEM -->
+
+        <!-- FORM ITEM -->
+        <div class="form-item">
+            <!-- FORM INPUT -->
+            <div class="form-input ">
+                {{form_row(form.membre)}}
+            </div>
+            <!-- /FORM INPUT -->
+        </div>
+    </div>
+    <!-- /FORM ITEM -->
+    <div class="form-row">
+        <div class="form-item">
+            <!-- FORM INPUT -->
+            <div class="form-input ">
+                {{form_row(form.description)}}
+            </div>
+            <!-- /FORM INPUT -->
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-item">
+            <!-- FORM INPUT -->
+            <div class="form-input ">
+                {{form_row(form.termine)}}
+            </div>
+            <!-- /FORM INPUT -->
+        </div>
+    </div>
+
+    <!-- /FORM ROW -->
+
+    <!-- FORM ROW -->
+    <div class="form-row split">
+        <!-- FORM ITEM -->
+        <div class="form-item">
+            <!-- BUTTON -->
+
+            <!-- /BUTTON -->
+        </div>
+        <!-- /FORM ITEM -->
+
+        <!-- FORM ITEM -->
+
+        <!-- /FORM ITEM -->
+    </div>
+
+    {{ form_widget(form._token) }}
+
+    {{ form_end(form, {'render_rest' : false}) }}    <!-- /FORM ROW -->
+</form>#}
+
