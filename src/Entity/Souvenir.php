@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\SouvenirRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=SouvenirRepository::class)
@@ -90,7 +91,7 @@ class Souvenir
         return $this->path;
     }
 
-    public function setPath(UploadedFile $path): self
+    public function setPath(string $path): self
     {
         $this->path = $path;
 

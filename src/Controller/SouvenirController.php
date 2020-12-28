@@ -3,12 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Souvenir;
+
 use App\Form\SouvenirType;
 use App\Repository\SouvenirRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * @Route("/souvenir")
@@ -26,15 +30,48 @@ class SouvenirController extends AbstractController
     }
 
     /**
+     * @Route("/tous", name="souv_all", methods={"GET"})
+     */
+    public function affiche(SouvenirRepository $souvenirRepository): Response
+    {
+        return $this->render('souvenir/photos.html.twig', [
+            'souvenirs' => $souvenirRepository->findAll(),
+        ]);
+    }
+
+    /**
      * @Route("/new", name="souvenir_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request,  SluggerInterface $slugger): Response
     {
         $souvenir = new Souvenir();
         $form = $this->createForm(SouvenirType::class, $souvenir);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get('path')->getData();
+            if($file){
+                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+                // Move the file to the directory where brochures are stored
+
+                try {
+                    $file->move(
+                        $this->getParameter('souvenirs_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    dd($e);
+                }
+
+
+                // updates the 'brochureFilename' property to store the PDF file name
+                // instead of its contents
+                $souvenir->setPath($newFilename);
+
+            }
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($souvenir);
             $entityManager->flush();

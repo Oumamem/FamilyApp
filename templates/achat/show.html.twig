@@ -3,6 +3,7 @@
 {% block title %}Achat{% endblock %}
 
 {% block body %}
+<div class="content-grid">
     <h1>Achat</h1>
 
     <table class="table">
@@ -27,11 +28,14 @@
 
 
         </tbody>
+        <a class="btn btn-info" href="{{ path('achat_edit', {'id': achat.id}) }}">Modifier</a>
     </table>
 
-    <a href="{{ path('achat_index') }}">back to list</a>
 
-    <a href="{{ path('achat_edit', {'id': achat.id}) }}">edit</a>
+    <a href="{{ path('achat_index') }}">retour à la liste des achats</a>
 
-    {{ include('achat/_delete_form.html.twig') }}
+
+
+
+</div>
 {% endblock %}

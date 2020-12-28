@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+{% block title %}Souvenir index{% endblock %}
+
+{% block body %}
+  <!-- CONTENT GRID -->
+  <div class="content-grid">
+    <!-- PROFILE HEADER -->
+    <div class="section-banner">
+      <!-- SECTION BANNER ICON -->
+      <img class="section-banner-icon" src="/img/banner/check.png" alt="forums-icon">
+      <!-- /SECTION BANNER ICON -->
+  
+      <!-- SECTION BANNER TITLE -->
+      <p class="section-banner-title">Photos</p>
+      <!-- /SECTION BANNER TITLE -->
+  
+      <!-- SECTION BANNER TEXT -->
+      <p class="section-banner-text">nos souvenirs</p>
+      <!-- /SECTION BANNER TEXT -->
+    </div>
+    <!-- /PROFILE HEADER -->
+
+
+    <!-- SECTION -->
+    <section class="section">
+      <!-- SECTION HEADER -->
+
+
+
+      <!-- SECTION HEADER -->
+      <div class="section-header">
+        <!-- SECTION HEADER INFO -->
+        <div class="section-header-info">
+          <!-- SECTION PRETITLE -->
+          <p class="section-pretitle">Nos photos</p>
+          <!-- /SECTION PRETITLE -->
+    
+          <!-- SECTION TITLE -->
+          <h2 class="section-title">Les dernières photos</h2>
+          <!-- /SECTION TITLE -->
+        </div>
+        <!-- /SECTION HEADER INFO -->
+    
+        <!-- SECTION HEADER ACTIONS -->
+        <div class="section-header-actions">
+          <!-- SECTION HEADER ACTION -->
+          <a class="section-header-action" href="{{ path('souvenir_new') }}">Créer un nouveau souvenir</a>
+          <!-- /SECTION HEADER ACTION -->
+    
+          <!-- SECTION HEADER ACTION -->
+          <a class="section-header-action" href="profile-photos-inside.html">Afficher tous</a>
+          <!-- /SECTION HEADER ACTION -->
+        </div>
+        <!-- /SECTION HEADER ACTIONS -->
+      </div>
+      <!-- /SECTION HEADER -->
+
+      <!-- PHOTOS MASONRY -->
+      <div class="photos-masonry">
+        <!-- PHOTO PREVIEW -->
+        {% for souvenir in souvenirs %}
+        <div class="photo-preview popup-picture-trigger">
+          <!-- PHOTO PREVIEW IMAGE -->
+          <figure class="photo-preview-image liquid">
+            <img src="/uploads/souvenirs{{ asset(souvenir.path) }}" alt="{{ souvenir.path }}">
+          </figure>
+          <!-- /PHOTO PREVIEW IMAGE -->
+
+          <!-- PHOTO PREVIEW INFO -->
+          <div class="photo-preview-info">
+            <!-- REACTION COUNT LIST -->
+            <div class="reaction-count-list landscape">
+              <!-- REACTION COUNT -->
+              <div class="reaction-count negative">
+                <!-- REACTION COUNT ICON -->
+
+                <!-- /REACTION COUNT ICON -->
+
+                <!-- REACTION COUNT TEXT -->
+                <p class="reaction-count-text">{{ souvenir.name }}</p>
+                <!-- /REACTION COUNT TEXT -->
+              </div>
+              <!-- /REACTION COUNT -->
+
+              <!-- REACTION COUNT -->
+              <div class="reaction-count negative">
+                <!-- REACTION COUNT ICON -->
+
+                <!-- /REACTION COUNT ICON -->
+
+                <!-- REACTION COUNT TEXT -->
+                <p class="reaction-count-text">{{ souvenir.date ? souvenir.date|date('Y-m-d') : '' }}</p>
+                <!-- /REACTION COUNT TEXT -->
+              </div>
+              <!-- /REACTION COUNT -->
+            </div>
+            <!-- /REACTION COUNT LIST -->
+          </div>
+          <!-- /PHOTO PREVIEW INFO -->
+        </div>
+        <!-- /PHOTO PREVIEW -->
+        {% endfor %}
+        <!-- /PHOTO PREVIEW -->
+      </div>
+      <!-- /PHOTOS MASONRY -->
+    </section>
+    <!-- /SECTION -->
+  </div>
+  <!-- /CONTENT GRID -->
+
+  <!-- POPUP BOX -->
+
+  <!-- /POPUP BOX -->
+
+  <!-- POPUP PICTURE -->
+
+{% endblock %}
