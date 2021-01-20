@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Controller\TimeStamp;
 use App\Repository\MembreRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -13,6 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Membre
 {
+    use TimeStamp;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -35,10 +37,6 @@ class Membre
      */
     private $date_naissance;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
 
 
 
@@ -58,10 +56,7 @@ class Membre
      */
     private $achats;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $role;
+
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -82,6 +77,12 @@ class Membre
      * @ORM\OneToMany(targetEntity=Todo::class, mappedBy="AssigneA")
      */
     private $tache;
+
+    /**
+     * @ORM\OneToOne(targetEntity=TypeMembre::class, cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $rolefamille;
 
     public function __construct()
     {
@@ -127,21 +128,6 @@ class Membre
     public function setDateNaissance(\DateTimeInterface $date_naissance): self
     {
         $this->date_naissance = $date_naissance;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * @ORM\PrePersist()
-     */
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->setCreatedAt(new \DateTime());;
 
         return $this;
     }
@@ -220,17 +206,6 @@ class Membre
         return $this;
     }
 
-    public function getRole(): ?string
-    {
-        return $this->role;
-    }
-
-    public function setRole(string $role): self
-    {
-        $this->role = $role;
-
-        return $this;
-    }
 
     public function getDescription(): ?string
     {
@@ -294,6 +269,18 @@ class Membre
                 $tache->setAssigneA(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getRolefamille(): ?TypeMembre
+    {
+        return $this->rolefamille;
+    }
+
+    public function setRolefamille(TypeMembre $rolefamille): self
+    {
+        $this->rolefamille = $rolefamille;
 
         return $this;
     }

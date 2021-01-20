@@ -1,15 +1,17 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Nouveau membre{% endblock %}
+
 {% block body %}
     <div class="content-grid">
         <!-- SECTION BANNER -->
         <div class="section-banner">
             <!-- SECTION BANNER ICON -->
-            <img class="section-banner-icon" src="/img/banner/check.png" alt="accounthub-icon">
+            <img class="section-banner-icon" src="/img/banner/shopping.png" alt="accounthub-icon">
             <!-- /SECTION BANNER ICON -->
 
             <!-- SECTION BANNER TITLE -->
-            <p class="section-banner-title">Account Hub</p>
+            <p class="section-banner-title">Espace Achat</p>
             <!-- /SECTION BANNER TITLE -->
 
             <!-- SECTION BANNER TEXT -->
@@ -22,11 +24,11 @@
                 <!-- SECTION HEADER INFO -->
                 <div class="section-header-info">
                     <!-- SECTION PRETITLE -->
-                    <p class="section-pretitle">Tache</p>
+                    <p class="section-pretitle">Achat</p>
                     <!-- /SECTION PRETITLE -->
 
                     <!-- SECTION TITLE -->
-                    <h2 class="section-title">Modifier cette tache</h2>
+                    <h2 class="section-title">Ajouter un nouvel article à acheter</h2>
                     <!-- /SECTION TITLE -->
                 </div>
                 <!-- /SECTION HEADER INFO -->
@@ -51,7 +53,7 @@
                         {% endfor %}
                         <!-- FORM -->
 
-                        {{include ('to_do/_form.html.twig', {form: form})}}
+                        {{ include('member/_form.html.twig') }}
                         <!-- /FORM -->
                     </div>
                     <!-- WIDGET BOX CONTENT -->
@@ -64,8 +66,10 @@
 
     </div>
 
-{% endblock %}
 
-{% block title %}
-    Modifier la tache
+
+
+
+
+    <a href="{{ path('achat_index') }}">back to list</a>
 {% endblock %}

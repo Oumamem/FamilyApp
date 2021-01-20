@@ -49,7 +49,15 @@
         <!-- /FORM -->
   
         <!-- FILTER TABS -->
-     
+
+      </div>
+      <div class="section-header-actions">
+        <!-- SECTION HEADER ACTION -->
+        <a class="section-header-action" href="{{ path('membre_new') }}">Ajouter un nouveau membre</a>
+        <!-- r/SECTION HEADER ACTION -->
+
+        <!-- SECTION HEADER ACTION -->
+        <!-- /SECTION HEADER ACTION -->
       </div>
       <!-- /SECTION FILTERS BAR ACTIONS -->
   
@@ -115,7 +123,6 @@
                 <!-- /USER AVATAR BADGE BORDER -->
           
                
-            </a>
 
             <!-- /USER SHORT DESCRIPTION AVATAR -->
       
@@ -146,7 +153,7 @@
                 <!-- USER STAT -->
                 <div class="user-stat">
                   <!-- USER STAT TITLE -->
-                  <p class="user-stat-title">{{ membre.role }}</p>
+                  <p class="user-stat-title">{{ membre.rolefamille.name }}</p>
                   <!-- /USER STAT TITLE -->
           
                   <!-- USER STAT TEXT -->
