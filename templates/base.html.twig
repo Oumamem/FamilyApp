@@ -3,18 +3,23 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}{{ controller_name }}{% endblock %}</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.css" integrity="sha256-uq9PNlMzB+1h01Ij9cx7zeE2OR2pLAfRw3uUUOOPKdA=" crossorigin="anonymous">
+
         {% block stylesheets %}
 
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
             <!-- bootstrap 4.3.1 -->
             <link rel="stylesheet" href="/css/vendor/bootstrap.min.css">
+
             <!-- styles -->
             <link rel="stylesheet" href="/css/styles.min.css">
+
             <!-- simplebar styles -->
             <link rel="stylesheet" href="/css/vendor/simplebar.css">
             <link rel="stylesheet" href="css/vendor/tiny-slider.css">
             <!-- favicon -->
             <link rel="icon" href="img/favicon.ico">
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
@@ -925,7 +930,11 @@
                                 <!-- /MENU MAIN ITEM LINK -->
                             </li>
                             <!-- /MENU MAIN ITEM -->
-
+                            <li class="menu-main-item">
+                                <!-- MENU MAIN ITEM LINK -->
+                                <a class="menu-main-item-link" href="{{ path('main') }}">Calendrier</a>
+                                <!-- /MENU MAIN ITEM LINK -->
+                            </li>
                             <!-- MENU MAIN ITEM -->
 
                             <!-- /MENU MAIN ITEM -->
@@ -1462,9 +1471,10 @@
 
             {% endblock %}
 
-        {% block javascripts %}
-            <script src="/app.bundle.min.js"></script>
-        {% endblock %}
+            <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.3.0/main.min.js" integrity="sha256-DBxkGZLxKsLKhz054qUpBqtotG00r9AELGpSigJujLg=" crossorigin="anonymous"></script>
 
+            <script src="app.bundle.min.js" ></script>
+            {% block javascripts %}
+            {% endblock %}
 </body>
 </html>

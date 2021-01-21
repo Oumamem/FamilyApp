@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Calendar{% endblock %}
+
+{% block body %}
+    <div class="content-grid">
+        <!-- SECTION BANNER -->
+        <div class="section-banner">
+            <!-- SECTION BANNER ICON -->
+
+            <!-- /SECTION BANNER ICON -->
+
+            <!-- SECTION BANNER TITLE -->
+            <p class="section-banner-title">Gérer vos tâches</p>
+            <!-- /SECTION BANNER TITLE -->
+
+            <!-- SECTION BANNER TEXT -->
+            <p class="section-banner-text">Vous pouvez tout faire!</p>
+            <!-- /SECTION BANNER TEXT -->
+        </div>
+        <div class="account-hub-content">
+            <!-- SECTION HEADER -->
+            <div class="section-header">
+                <!-- SECTION HEADER INFO -->
+                <div class="section-header-info">
+                    <!-- SECTION PRETITLE -->
+                    <p class="section-pretitle">Tache</p>
+                    <!-- /SECTION PRETITLE -->
+
+                    <!-- SECTION TITLE -->
+                    <h2 class="section-title">Modifier cette tache</h2>
+                    <!-- /SECTION TITLE -->
+                </div>
+                <!-- /SECTION HEADER INFO -->
+            </div>
+            <!-- /SECTION HEADER -->
+
+            <!-- GRID COLUMN -->
+            <div class="grid-column">
+                <!-- WIDGET BOX -->
+                <div class="widget-box">
+                    <!-- WIDGET BOX CONTENT -->
+                    <div class="widget-box-content">
+                        {% for message in app.flashes('success') %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        {% for message in app.flashes('error') %}
+                            <div class="alert alert-danger">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        <!-- FORM -->
+
+                        {{ include('calendar/_form.html.twig') }}
+                        <!-- /FORM -->
+                    </div>
+                    <!-- WIDGET BOX CONTENT -->
+                </div>
+                <!-- /WIDGET BOX -->
+            </div>
+            <!-- /GRID COLUMN -->
+        </div>
+        <!-- /SECTION BANNER -->
+
+    </div>
+
+{% endblock %}
+
+
+
