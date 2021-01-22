@@ -1,0 +1,192 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+<div class="content-grid">
+    <!-- PROFILE HEADER -->
+    <div class="section-banner">
+        <!-- SECTION BANNER ICON -->
+        <img class="section-banner-icon" src="img/banner/family-members.png" alt="forums-icon" height="200" width="190">
+        <!-- /SECTION BANNER ICON -->
+
+        <!-- SECTION BANNER TITLE -->
+        <p class="section-banner-title">Family</p>
+        <!-- /SECTION BANNER TITLE -->
+
+        <!-- SECTION BANNER TEXT -->
+        <p class="section-banner-text">Our family</p>
+        <!-- /SECTION BANNER TEXT -->
+    </div>
+    <!-- /PROFILE HEADER -->
+
+    <!-- SECTION NAVIGATION -->
+    <nav class="section-navigation">
+        <!-- SECTION MENU -->
+        <div id="section-navigation-slider" class="section-menu">
+            <!-- SECTION MENU ITEM -->
+            <a class="section-menu-item" href="profile-about.html">
+                <!-- SECTION MENU ITEM ICON -->
+                <svg class="section-menu-item-icon icon-profile">
+                    <use xlink:href="#svg-profile"></use>
+                </svg>
+                <!-- /SECTION MENU ITEM ICON -->
+
+                <!-- SECTION MENU ITEM TEXT -->
+                <p class="section-menu-item-text">About</p>
+                <!-- /SECTION MENU ITEM TEXT -->
+            </a>
+            <!-- /SECTION MENU ITEM -->
+
+            <!-- SECTION MENU ITEM -->
+            <a class="section-menu-item active" href="profile-timeline.html">
+                <!-- SECTION MENU ITEM ICON -->
+                <svg class="section-menu-item-icon icon-timeline">
+                    <use xlink:href="#svg-timeline"></use>
+                </svg>
+                <!-- /SECTION MENU ITEM ICON -->
+
+                <!-- SECTION MENU ITEM TEXT -->
+                <p class="section-menu-item-text">Accueil</p>
+                <!-- /SECTION MENU ITEM TEXT -->
+            </a>
+            <!-- /SECTION MENU ITEM -->
+
+            <!-- SECTION MENU ITEM -->
+            <a class="section-menu-item" href="members.html">
+                <!-- SECTION MENU ITEM ICON -->
+                <svg class="section-menu-item-icon icon-friend">
+                    <use xlink:href="#svg-friend"></use>
+                </svg>
+                <!-- /SECTION MENU ITEM ICON -->
+
+                <!-- SECTION MENU ITEM TEXT -->
+                <p class="section-menu-item-text">Friends</p>
+                <!-- /SECTION MENU ITEM TEXT -->
+            </a>
+            <!-- /SECTION MENU ITEM -->
+
+
+            <!-- /SECTION MENU ITEM -->
+
+            <!-- SECTION MENU ITEM -->
+            <a class="section-menu-item" href="profile-photos.html">
+                <!-- SECTION MENU ITEM ICON -->
+                <svg class="section-menu-item-icon icon-photos">
+                    <use xlink:href="#svg-photos"></use>
+                </svg>
+                <!-- /SECTION MENU ITEM ICON -->
+
+                <!-- SECTION MENU ITEM TEXT -->
+                <p class="section-menu-item-text">Photos</p>
+                <!-- /SECTION MENU ITEM TEXT -->
+            </a>
+            <!-- /SECTION MENU ITEM -->
+
+            <!-- SECTION MENU ITEM -->
+            <a class="section-menu-item" href="profile-videos.html">
+                <!-- SECTION MENU ITEM ICON -->
+                <svg class="section-menu-item-icon icon-videos">
+                    <use xlink:href="#svg-videos"></use>
+                </svg>
+                <!-- /SECTION MENU ITEM ICON -->
+
+                <!-- SECTION MENU ITEM TEXT -->
+                <p class="section-menu-item-text">Videos</p>
+                <!-- /SECTION MENU ITEM TEXT -->
+            </a>
+            <!-- /SECTION MENU ITEM -->
+
+            <!-- SECTION MENU ITEM -->
+
+            <!-- /SECTION MENU ITEM -->
+
+            <!-- /SECTION MENU ITEM -->
+
+
+            <!-- /SECTION MENU ITEM -->
+
+
+            <!-- /SECTION MENU ITEM -->
+
+            <!-- SECTION MENU ITEM -->
+            <a class="section-menu-item" href="shopping.html">
+                <!-- SECTION MENU ITEM ICON -->
+                <svg class="section-menu-item-icon icon-store">
+                    <use xlink:href="#svg-store"></use>
+                </svg>
+                <!-- /SECTION MENU ITEM ICON -->
+
+                <!-- SECTION MENU ITEM TEXT -->
+                <p class="section-menu-item-text">Store</p>
+                <!-- /SECTION MENU ITEM TEXT -->
+            </a>
+            <!-- /SECTION MENU ITEM -->
+        </div>
+        <!-- /SECTION MENU -->
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-4 mt-5">
+                <p class="section-menu-item-text">Liste des tâches à faire</p>
+
+                <a class="action-list-item" href="todolist.html">
+                    <!-- ACTION LIST ITEM ICON -->
+                    <img src="img/flag/listetodo.webp" alt="Girl in a jacket" width="200" height="200">
+                    <!-- /ACTION LIST ITEM ICON -->
+                </a>
+            </div>
+
+            <div class="col-4 mt-5">
+                <p class="section-menu-item-text">Membres de ma famille</p>
+
+                <a class="action-list-item" href="members.html">
+                    <!-- ACTION LIST ITEM ICON -->
+                    <img src="img/flag/familyMambre.jpg" alt="Girl in a jacket" width="200" height="200">
+                    <!-- /ACTION LIST ITEM ICON -->
+                </a>
+            </div>
+
+            <div class="col-4 mt-5">
+                <p class="section-menu-item-text">Shopping</p>
+
+                <a class="action-list-item" href="shopping.html">
+                    <!-- ACTION LIST ITEM ICON -->
+                    <img src="img/banner/shopping.png" alt="Girl in a jacket" width="200" height="200">
+                    <!-- /ACTION LIST ITEM ICON -->
+                </a>
+            </div>
+            <div class="col-4 mt-5">
+                <p class="section-menu-item-text">Galerie</p>
+
+                <a class="action-list-item" href="profile-photos.html">
+                    <!-- ACTION LIST ITEM ICON -->
+                    <img src="img/flag/photo.png" alt="Girl in a jacket" width="200" height="200">
+                    <!-- /ACTION LIST ITEM ICON -->
+                </a>
+            </div>
+            <div class="col-4 mt-5">
+                <p class="section-menu-item-text">Evènements</p>
+
+                <a class="action-list-item" href="evenements.html">
+                    <!-- ACTION LIST ITEM ICON -->
+                    <img src="img/banner/events-icon.png" alt="Girl in a jacket" width="200" height="200">
+                    <!-- /ACTION LIST ITEM ICON -->
+                </a>
+            </div>
+            <div class="col-4 mt-5">
+                <p class="section-menu-item-text">Videos</p>
+
+                <a class="action-list-item" href="profile-videos.html">
+                    <!-- ACTION LIST ITEM ICON -->
+                    <img src="img/banner/video.png" alt="Girl in a jacket" width="200" height="200">
+                    <!-- /ACTION LIST ITEM ICON -->
+                </a>
+            </div>
+        </div>
+
+{% endblock %}
