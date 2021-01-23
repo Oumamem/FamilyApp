@@ -757,9 +757,12 @@
                         <!-- ACTION ITEM -->
                         <div class="action-item dark header-settings-dropdown-trigger">
                             <!-- ACTION ITEM ICON -->
-                            <svg class="action-item-icon icon-settings">
-                                <use xlink:href="#svg-settings"></use>
-                            </svg>
+
+                                {% if app.user %}
+                                    <a href="{{ path('app_logout') }}" class="nav-link" title="login">logout</a>
+                                {% else %}<a href="{{ path('app_login') }}" class="nav-link" title="login">login</a>
+                                {% endif %}
+
                             <!-- /ACTION ITEM ICON -->
                         </div>
                         <!-- /ACTION ITEM -->

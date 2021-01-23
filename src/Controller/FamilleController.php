@@ -1,175 +1,81 @@
 <?php
 
-namespace App\Entity;
+namespace App\Controller;
 
-use App\Repository\FamilleRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Membre;
+use App\Entity\Famille;
+use App\Form\RegistrationType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 
 
-/**
- * @ORM\Entity(repositoryClass=FamilleRepository::class)
- */
-class Famille
+
+class FamilleController extends AbstractController
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $name;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $number;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Membre::class, mappedBy="famille")
-     */
-    private $membres;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $email;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $password;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Souvenir::class, mappedBy="famille")
-     */
-    private $souvenirs;
-
-    public function __construct()
+    private $passwordEncoder;
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
     {
-        $this->membres = new ArrayCollection();
-        $this->souvenirs = new ArrayCollection();
+        $this->passwordEncoder = $passwordEncoder;
     }
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getNumber(): ?int
-    {
-        return $this->number;
-    }
-
-    public function setNumber(int $number): self
-    {
-        $this->number = $number;
-
-        return $this;
-    }
-
-
-
-
     /**
-     * @return Collection|Membre[]
+     * @Route("/inscription", name="security_registration")
      */
-    public function getMembres(): Collection
+    public function registration(Request $request, EntityManagerInterface $em , UserPasswordEncoderInterface $passwordEncoder ): Response
     {
-        return $this->membres;
-    }
 
-    public function addMembre(Membre $membre): self
-    {
-        if (!$this->membres->contains($membre)) {
-            $this->membres[] = $membre;
-            $membre->setFamille($this);
+        $famille = new Famille();
+        $form = $this->createForm(RegistrationType::class, $famille);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $famille->setPassword(
+                $passwordEncoder->encodePassword(
+                    $famille,
+                    $form->get('password')->getData()
+                )
+            );
+
+            $em->persist($famille);
+            $em->flush();
+            return $this->redirectToRoute('app_login');
+
         }
-
-        return $this;
-    }
-
-    public function removeMembre(Membre $membre): self
-    {
-        if ($this->membres->removeElement($membre)) {
-            // set the owning side to null (unless already changed)
-            if ($membre->getFamille() === $this) {
-                $membre->setFamille(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
+        return $this->render('famille/Inscription.html.twig',
+            ['form' =>$form->createView()]);
     }
 
     /**
-     * @return Collection|Souvenir[]
+     * @Route("/login", name="app_login")
      */
-    public function getSouvenirs(): Collection
+    public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        return $this->souvenirs;
+        // if ($this->getUser()) {
+        //     return $this->redirectToRoute('target_path');
+        // }
+
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
 
-    public function addSouvenir(Souvenir $souvenir): self
+    /**
+     * @Route("/logout", name="app_logout")
+     */
+    public function logout()
     {
-        if (!$this->souvenirs->contains($souvenir)) {
-            $this->souvenirs[] = $souvenir;
-            $souvenir->setFamille($this);
-        }
-
-        return $this;
+        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 
-    public function removeSouvenir(Souvenir $souvenir): self
-    {
-        if ($this->souvenirs->removeElement($souvenir)) {
-            // set the owning side to null (unless already changed)
-            if ($souvenir->getFamille() === $this) {
-                $souvenir->setFamille(null);
-            }
-        }
 
-        return $this;
-    }
+
 }

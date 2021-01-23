@@ -10,6 +10,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\ChoiceList;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -23,7 +24,10 @@ class MembreType extends AbstractType
         $builder
             ->add('nom')
             ->add('prenom')
-            ->add('date_naissance')
+            ->add('date_naissance', DateType::class, [
+                'widget' => 'single_text',
+
+            ])
 
             ->add('rolefamille', EntityType::class, [
                 'class'=>TypeMembre::class,
@@ -51,13 +55,7 @@ class MembreType extends AbstractType
                     new Image()
                 ]
             ])
-            ->add('famille', EntityType::class, [
-                'class'=>Famille::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('m')
-                        ->orderBy('m.id', 'ASC');
-                },
-                'choice_label' => 'name'])
+
         ;
     }
 

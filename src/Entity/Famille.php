@@ -6,13 +6,17 @@ use App\Repository\FamilleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use Symfony\Component\Security\Http\Authenticator\AuthenticatorInterface;
 
 
 /**
  * @ORM\Entity(repositoryClass=FamilleRepository::class)
  */
-class Famille
+class Famille implements  UserInterface
 {
     /**
      * @ORM\Id
@@ -42,6 +46,7 @@ class Famille
     private $email;
 
     /**
+     * @var string The hashed password
      * @ORM\Column(type="string", length=255)
      */
     private $password;
@@ -50,6 +55,16 @@ class Famille
      * @ORM\OneToMany(targetEntity=Souvenir::class, mappedBy="famille")
      */
     private $souvenirs;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $username;
 
     public function __construct()
     {
@@ -131,6 +146,9 @@ class Famille
         return $this;
     }
 
+    /**
+     * @see UserInterface
+     */
     public function getPassword(): ?string
     {
         return $this->password;
@@ -171,5 +189,47 @@ class Famille
         }
 
         return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    public function authenticateUser(UserInterface $user, AuthenticatorInterface $authenticator, Request $request): ?Response
+    {
+        // TODO: Implement authenticateUser() method.
+    }
+
+    public function getRoles()
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
     }
 }

@@ -1,4 +1,7 @@
 security:
+    encoders:
+        App\Entity\Famille:
+            algorithm: auto
 
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
@@ -7,7 +10,7 @@ security:
         in_database:
             entity:
                 class: App\Entity\Famille
-                property: email
+                property: username
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -16,8 +19,17 @@ security:
             anonymous: lazy
             provider: in_database
             form_login:
-                login_path: security_login
-                check_path: security_login
+                login_path: app_login
+                check_path: app_login
+            guard:
+                authenticators:
+                    - App\Security\FamilleAuthenticator
+            logout:
+                path: app_logout
+                target: security_registration
+                # where to redirect after logout
+                # target: app_any_route
+
 
 
             # activate different ways to authenticate
@@ -29,5 +41,5 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-    # - { path: ^/admin, roles: ROLE_ADMIN }
+    - { path: ^/admin, roles: ROLE_ADMIN }
     # - { path: ^/profile, roles: ROLE_USER }
