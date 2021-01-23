@@ -90,7 +90,7 @@ class MemberController extends AbstractController
     public function show(): Response
     {
         $repository = $this->getDoctrine()->getRepository(Membre::class);
-        $membres= $repository->findAll();
+        $membres= $repository->findByFamily($this->getUser());
 
 
         return $this->render('member/members.html.twig', [

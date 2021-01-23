@@ -75,6 +75,37 @@ class FamilleController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+    /**
+     * @Route("/famille/edit/{id?0}", name="famille.edit", methods="GET|POST")
+     */
+    public function edit(Famille $famille=null, Request $request):Response
+    {
+        if(!$famille)
+            $tache= new Famille();
+
+        $form=$this->createForm(RegistrationType::class,$famille);
+        $form->remove('password');
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()&&$form->isValid()){
+
+            $em= $this->getDoctrine()->getManager();
+            $em->persist($tache);
+            $em->flush();
+            $this->addFlash('success', 'Tache modifiée avec succes');
+
+            return $this->redirectToRoute('home');
+
+        } else {
+
+            return $this->render('famille/profile.html.twig', [
+
+                'form'=>$form->createView(),
+            ]);
+
+        }
+    }
 
 
 

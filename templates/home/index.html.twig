@@ -25,7 +25,7 @@
         <!-- SECTION MENU -->
         <div id="section-navigation-slider" class="section-menu">
             <!-- SECTION MENU ITEM -->
-            <a class="section-menu-item" href="profile-about.html">
+            <a class="section-menu-item" href="{{ path('famille.edit') }}">
                 <!-- SECTION MENU ITEM ICON -->
                 <svg class="section-menu-item-icon icon-profile">
                     <use xlink:href="#svg-profile"></use>
@@ -53,7 +53,7 @@
             <!-- /SECTION MENU ITEM -->
 
             <!-- SECTION MENU ITEM -->
-            <a class="section-menu-item" href="members.html">
+            <a class="section-menu-item" href="{{ path('membre.liste') }}">
                 <!-- SECTION MENU ITEM ICON -->
                 <svg class="section-menu-item-icon icon-friend">
                     <use xlink:href="#svg-friend"></use>
@@ -61,7 +61,7 @@
                 <!-- /SECTION MENU ITEM ICON -->
 
                 <!-- SECTION MENU ITEM TEXT -->
-                <p class="section-menu-item-text">Friends</p>
+                <p class="section-menu-item-text">Membres</p>
                 <!-- /SECTION MENU ITEM TEXT -->
             </a>
             <!-- /SECTION MENU ITEM -->
@@ -70,7 +70,7 @@
             <!-- /SECTION MENU ITEM -->
 
             <!-- SECTION MENU ITEM -->
-            <a class="section-menu-item" href="profile-photos.html">
+            <a class="section-menu-item" href="{{ path('souvenir_index') }}">
                 <!-- SECTION MENU ITEM ICON -->
                 <svg class="section-menu-item-icon icon-photos">
                     <use xlink:href="#svg-photos"></use>
@@ -110,7 +110,7 @@
             <!-- /SECTION MENU ITEM -->
 
             <!-- SECTION MENU ITEM -->
-            <a class="section-menu-item" href="shopping.html">
+            <a class="section-menu-item" href="{{ path('achat_index') }}">
                 <!-- SECTION MENU ITEM ICON -->
                 <svg class="section-menu-item-icon icon-store">
                     <use xlink:href="#svg-store"></use>
@@ -186,7 +186,17 @@
                     <img src="img/banner/video.png" alt="Girl in a jacket" width="200" height="200">
                     <!-- /ACTION LIST ITEM ICON -->
                 </a>
+
             </div>
         </div>
+        <br>
+        <br>
+        <br><br>
+        <br>
+        <br>
+    </nav>
+
+</div>
+
 
 {% endblock %}
