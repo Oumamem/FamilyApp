@@ -1,0 +1,70 @@
+{% extends 'base1.html.twig' %}
+
+{% block title %}Hello FamilleController!{% endblock %}
+
+{% block body %}
+
+<div class="container content">
+
+   <div class="row">
+       <div class="card card-register mx-auto mt-5 col-md-8">
+           <div class="card-header">Bienvenue la nouvelle famille !</div>
+           <div class="card-body">
+
+                  {{ form_start(form) }}
+                   <div class="form-group">
+                       <div class="form-row">
+                           <div class="col-md-5">
+                               <div class="form-label-group">
+                                   {{ form_row(form.name) }}
+                               </div>
+                           </div>
+                           <div class="col-md-5">
+                               <div class="form-label-group">
+                                   {{ form_row(form.email) }}
+                               </div>
+                           </div>
+
+                       </div>
+                   </div>
+                   <div class="form-group">
+                       <div class="form-row">
+                           <div class="col-md-7">
+                               <div class="form-label-group">
+                                   {{ form_row(form.number) }}
+                               </div>
+                           </div>
+
+                       </div>
+                   </div>
+                   <div class="form-group">
+                       <div class="form-row">
+
+
+                       </div>
+                   </div>
+
+
+                   <div class="form-group">
+                       <div class="form-row">
+                           <div class="col-md-4">
+                               <div class="form-label-group">
+                                   {{ form_row(form.password,{ 'type':'password'}) }}
+                               </div>
+                           </div>
+                      
+                       </div>
+                   </div>
+
+<button type="submit" class="btn btn-primary btn-block">S'inscrire</button>
+
+               <div class="text-center">
+                   <a class="d-block medium" href="forgot-password.html">Mot de passe oublié?</a>
+               </div>
+           </div>
+       </div>
+   </div>
+{{ form_end(form) }}
+</div>
+
+{% endblock %}

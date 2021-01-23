@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+
+
 /**
  * @ORM\Entity(repositoryClass=FamilleRepository::class)
  */
@@ -83,6 +85,9 @@ class Famille
 
         return $this;
     }
+
+
+
 
     /**
      * @return Collection|Membre[]
