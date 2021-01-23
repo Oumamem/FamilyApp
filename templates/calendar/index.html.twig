@@ -3,20 +3,84 @@
 {% block title %}Calendar index{% endblock %}
 
 {% block body %}
-    <h1>Calendar index</h1>
+<div class="content-grid">
+    <!-- SECTION BANNER -->
+    <div class="section-banner">
+        <!-- SECTION BANNER ICON -->
+        <img class="section-banner-icon" src="\img\banner\events-icon.png" alt="forums-icon">
+        <!-- /SECTION BANNER ICON -->
 
-    <table class="table">
-        <thead>
+        <!-- SECTION BANNER TITLE -->
+        <p class="section-banner-title">Les événements de ma famille</p>
+        <!-- /SECTION BANNER TITLE -->
+
+        <!-- SECTION BANNER TEXT -->
+        <p class="section-banner-text"></p>
+        <!-- /SECTION BANNER TEXT -->
+    </div>
+    <div class="section-header">
+        <!-- SECTION HEADER INFO -->
+        <div class="section-header-info">
+            <!-- SECTION PRETITLE -->
+            <p class="section-pretitle">Evenements</p>
+            <!-- /SECTION PRETITLE -->
+
+            <!-- SECTION TITLE -->
+            <h2 class="section-title">les events de la famille</h2>
+            <!-- /SECTION TITLE -->
+        </div>
+        <!-- /SECTION HEADER INFO -->
+    </div>
+    <div class="section-filters-bar v7">
+        <!-- SECTION FILTERS BAR ACTIONS -->
+        <div class="section-filters-bar-actions">
+            <!-- SECTION FILTERS BAR INFO -->
+            <div class="section-filters-bar-info">
+                <!-- SECTION FILTERS BAR TITLE -->
+                <p class="section-filters-bar-title"><a href="#">Liste des events</a></p>
+                <!-- /SECTION FILTERS BAR TITLE -->
+
+                <!-- SECTION FILTERS BAR TEXT -->
+                <!--<p class="section-filters-bar-text">Ekher haja tzedet 3andha 2 jours, zedha <a class="highlighted" href="forums-category.html">Ahmed</a> </p>
+               /SECTION FILTERS BAR TEXT -->
+            </div>
+            <!-- /SECTION FILTERS BAR INFO -->
+        </div>
+        <!-- /SECTION FILTERS BAR ACTIONS -->
+        <a class="button secondary popup-event-creation-trigger" href="{{ path('calendar_new') }}">+ Ajouter un événement</a>
+        <!-- SECTION FILTERS BAR ACTIONS -->
+        <div class="section-filters-bar-actions">
+            <!-- FORM -->
+            <form class="form">
+                <!-- FORM ITEM -->
+                <div class="form-item split">
+                    <!-- FORM INPUT -->
+
+                    <!-- /BUTTON -->
+                </div>
+                <!-- /FORM ITEM -->
+            </form>
+            <!-- /FORM -->
+        </div>
+        <!-- /SECTION FILTERS BAR ACTIONS -->
+    </div>
+    <!-- /SECTION FILTERS BAR -->
+
+
+    <!-- /SECTION HEADER -->
+
+    <!-- /SECTION BANNER -->
+
+    <table class="table table-forum-category">
+        <thead class="thead-dark">
             <tr>
                 <th>Id</th>
                 <th>Title</th>
-                <th>Start</th>
-                <th>End</th>
+                <th>Heure de début</th>
+                <th>Heure de fin</th>
                 <th>Description</th>
-                <th>All_day</th>
-                <th>Background_color</th>
-                <th>Border_color</th>
-                <th>Text_color</th>
+                <th>Toute la journée</th>
+
                 <th>actions</th>
             </tr>
         </thead>
@@ -28,13 +92,11 @@
                 <td>{{ calendar.start ? calendar.start|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ calendar.end ? calendar.end|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ calendar.description }}</td>
-                <td>{{ calendar.allDay ? 'Yes' : 'No' }}</td>
-                <td>{{ calendar.backgroundColor }}</td>
-                <td>{{ calendar.borderColor }}</td>
-                <td>{{ calendar.textColor }}</td>
+                <td>{{ calendar.allDay ? 'Oui' : 'Non' }}</td>
+
                 <td>
-                    <a href="{{ path('calendar_show', {'id': calendar.id}) }}">show</a>
-                    <a href="{{ path('calendar_edit', {'id': calendar.id}) }}">edit</a>
+                    <a href="{{ path('calendar_show', {'id': calendar.id}) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                    <a href="{{ path('calendar_edit', {'id': calendar.id}) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}
@@ -44,6 +106,7 @@
         {% endfor %}
         </tbody>
     </table>
+</div>
 
-    <a href="{{ path('calendar_new') }}">Create new</a>
+
 {% endblock %}

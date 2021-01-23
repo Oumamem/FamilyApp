@@ -70,7 +70,7 @@
       <div class="user-preview">
         <!-- USER PREVIEW COVER -->
         <figure class="user-preview-cover liquid">
-          <img src="{{membre.pathcover}}" alt="cover-04">
+          <img src="/uploads/souvenirs{{ asset(membre.pathcover) }}" alt="{{ membre.pathcover }}">
         </figure>
         <!-- /USER PREVIEW COVER -->
     
@@ -91,7 +91,7 @@
               <!-- USER AVATAR CONTENT -->
               <div class="user-avatar-content">
                 <!-- HEXAGON -->
-                <div class="hexagon-image-82-90" data-src="{{ membre.path }}"></div>
+                <div class="hexagon-image-82-90" data-src="/uploads/souvenirs{{ asset(membre.path) }}"></div>
                 <!-- /HEXAGON -->
               </div>
               <!-- /USER AVATAR CONTENT -->

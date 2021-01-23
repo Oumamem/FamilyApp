@@ -71,6 +71,7 @@ class SouvenirController extends AbstractController
                 $souvenir->setPath($newFilename);
 
             }
+            $souvenir->setFamille($this->getUser());
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($souvenir);

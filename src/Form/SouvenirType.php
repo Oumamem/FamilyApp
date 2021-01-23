@@ -41,20 +41,7 @@ class SouvenirType extends AbstractType
                     new Image()
                 ]
             ])
-            ->add('Role', EntityType::class, [
-                'class'=>Famille::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('m')
-                        ->orderBy('m.id', 'ASC');
-                },
-                'choice_label' => 'name'])
-            ->add('famille', EntityType::class, [
-                'class'=>Famille::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('m')
-                        ->orderBy('m.id', 'ASC');
-                },
-                'choice_label' => 'name'])
+
         ;
     }
 
